@@ -1,6 +1,6 @@
 <?php
 
-namespace Kothman\CSV;
+namespace Kothman;
 
 class CSVParser
 {
