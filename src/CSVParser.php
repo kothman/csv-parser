@@ -35,7 +35,7 @@ class CSVParser
      * @param string $path A URL or file.
      * @return bool Indicate success or failiure
      */ 
-    private function load($path)
+    protected function load($path)
     {
         $this->resource = fopen($path, 'r');
         return $this->resource?true:false;
