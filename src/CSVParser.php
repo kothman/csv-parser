@@ -42,18 +42,6 @@ class CSVParser
     }
     
     /**
-     * Called at the begining of any function that uses $resource
-     *
-     * @return void
-     */
-    protected function check()
-    {
-        if(!$this->resource) {
-            throw new Exception('The CSVParser does not have a loaded resource.');
-        }
-    }
-    
-    /**
      * Return the next row of the CSV file
      *
      * @return array | false
