@@ -7,7 +7,7 @@
 Via Composer
 
 ```bash
-$ composer require kothman/csvparser
+$ composer require kothman/csv-parser
 ```
 
 ## Usage
