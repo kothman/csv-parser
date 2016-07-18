@@ -14,19 +14,19 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     public function testCanBeLoaded()
     {
         $parserA = new CSVParser();
-	$this->assertTrue($parserA->load("test.csv"));
+	$this->assertTrue($parserA->load('test.csv'));
     }
 
     public function testCanGetRow()
     {
-        $parser = new CSVParser("test.csv");
+        $parser = new CSVParser('test.csv');
 	$row = $parser->row();
 	$this->assertNotEmpty($row);
     }
 
     public function testCanRewind()
     {
-	$parser = new CSVParser("test.csv");
+	$parser = new CSVParser('test.csv');
 	$firstRow = $parser->row();
 	$parser->rewind();
 	$alsoFirstRow = $parser->row();
@@ -35,7 +35,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
 
     public function testCanGetDifferentRows()
     {
-        $parser = new CSVParser("test.csv");
+        $parser = new CSVParser('test.csv');
 	$firstRow = $parser->row();
 	$secondRow = $parser->row();
 	$this->assertNotEquals($firstRow, $secondRow);
@@ -43,13 +43,22 @@ class ParserTest extends \PHPUnit_Framework_TestCase
 
     public function testRowCount()
     {
-        $p1 = new CSVParser("1row.csv");
+        $p1 = new CSVParser('1row.csv');
 	$this->assertEquals(1, $p1->countRows());
 	
-	$p2 = new CSVParser("2rows.csv");
+	$p2 = new CSVParser('2rows.csv');
 	$this->assertEquals(2, $p2->countRows());
 
-	$p10 = new CSVParser("10rows.csv");
+	$p10 = new CSVParser('10rows.csv');
 	$this->assertEquals(10, $p10->countRows());
+    }
+
+    public function testDict()
+    {
+        $parser = new CSVParser('dict.csv');
+	$dict = [['col1' => 'a',
+	         'col2' => 'b',
+		 'col3' => 'c']];
+	$this->assertEquals($dict, $parser->toDictionary());
     }
 }
