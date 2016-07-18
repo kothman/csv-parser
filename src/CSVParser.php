@@ -6,19 +6,27 @@ class CSVParser
 {
 
     protected $resource = null;
-    protected $length = 0;
-    protected $delimiter = ',';
-    protected $enclosure = '"';
-    protected $escape = '\\';
+    protected $options = null;
 
     /**
      * Create a new CSVParser instance
+     *
+     * @param string $path A URL or file.
+     * @param string $delimiter
+     * @param int $length
+     * @param string $enclosure
+     * @param string $escape
      */
-     public function __construct($path = null)
+     public function __construct($path = null,
+     	    	     		 $delimiter = null,
+				 $length = null,
+				 $enclosure = null,
+				 $escape = null)
      {
          if($path) {
 	     $this->load($path);
 	 }
+	 $this->options = new \Kothman\CSVParserOptions($delimiter, $length, $enclosure, $escape);
      }
 
     /**
@@ -67,10 +75,10 @@ class CSVParser
      public function row() {
          $this->check();
 	 $data = fgetcsv($this->resource,
-			 $this->length,
-			 $this->delimiter,
-			 $this->enclosure,
-			 $this->escape);
+			 $this->options->length,
+			 $this->options->delimiter,
+			 $this->options->enclosure,
+			 $this->options->escape);
 	 return $data;
      }
 
