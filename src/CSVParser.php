@@ -17,17 +17,17 @@ class CSVParser
      * @param string $enclosure
      * @param string $escape
      */
-     public function __construct($path = null,
-     	    	     		 $delimiter = null,
-				 $length = null,
-				 $enclosure = null,
-				 $escape = null)
-     {
-         if($path) {
-	     $this->load($path);
-	 }
-	 $this->options = new \Kothman\CSVParserOptions($delimiter, $length, $enclosure, $escape);
-     }
+    public function __construct($path,
+    	    	     		$delimiter = null,
+			 	$length = null,
+				$enclosure = null,
+				$escape = null)
+    {
+        if (!$this->load($path)) {
+	    throw new Exception('Unable to load resource: ' . $path);
+        }
+	$this->options = new \Kothman\CSVParserOptions($delimiter, $length, $enclosure, $escape);
+    }
 
     /**
      * Load a resource to be used by the parser
@@ -35,7 +35,7 @@ class CSVParser
      * @param string $path A URL or file.
      * @return bool Indicate success or failiure
      */ 
-     public function load($path)
+     private function load($path)
      {
 	$this->resource = fopen($path, 'r');
 	return $this->resource?true:false;
