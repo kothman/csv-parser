@@ -46,7 +46,8 @@ class CSVParser
      *
      * @return void
      */
-    protected function check() {
+    protected function check()
+    {
         if(!$this->resource) {
             throw new Exception('The CSVParser does not have a loaded resource.');
         }
@@ -57,8 +58,8 @@ class CSVParser
      *
      * @return array | false
      */
-    public function row() {
-        $this->check();
+    public function row()
+    {
         $data = fgetcsv($this->resource,
                         $this->options->length,
                         $this->options->delimiter,
@@ -72,8 +73,8 @@ class CSVParser
      *
      * @return void
      */
-    public function rewind() {
-        $this->check();
+    public function rewind()
+    {
         fseek($this->resource, 0);
     }
     
@@ -82,9 +83,8 @@ class CSVParser
      *
      * @return int Number of rows
      */
-    public function countRows() {
-        $this->check();
-        
+    public function countRows()
+    {
         // Get current position, since we need to rewind the file
         $pos = ftell($this->resource);
         
@@ -105,8 +105,8 @@ class CSVParser
      *
      * @return int Number of columns
      */
-    public function countColumns() {
-        $this->check();
+    public function countColumns()
+    {
         $pos = ftell($this->resource);
         
         $this->rewind();
@@ -123,7 +123,6 @@ class CSVParser
      */
     public function toDictionary()
     {
-        $this->check();
         $pos = ftell($this->resource);
         
         $this->rewind();
