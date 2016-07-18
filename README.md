@@ -22,11 +22,10 @@ while($row = $parser->row()) {
 $parser->rewind();
 $parser->row();
 
-$parser->load("https://some.csv.file.csv");
-$parser->set(['delimiter' => '.']);
-echo $parser->toDictionary();
-echo $parser->countColumns();
-echo $parser->countRows();
+$anotherParser = new Kothman\CSVParser("https://some.csv.file.csv", $delimeter = '.');
+echo $anotherParser->toDictionary();
+echo $anotherParser->countColumns();
+echo $anotherParser->countRows();
 
 ```
 
