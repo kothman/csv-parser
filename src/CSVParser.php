@@ -7,7 +7,8 @@ class CSVParser
 
     protected $resource = null;
     protected $options = null;
-    
+    protected $rowCount = null;
+
     /**
      * Create a new CSVParser instance
      *
@@ -73,6 +74,11 @@ class CSVParser
      */
     public function countRows()
     {
+        // Check to see if the count has already been cached
+        if ($this->rowCount) {
+            return $this->rowCount;
+        }
+
         // Get current position, since we need to rewind the file
         $pos = ftell($this->resource);
         
@@ -85,6 +91,8 @@ class CSVParser
         // Restore original position
         fseek($this->resource, $pos);
         
+        // Save the row count
+        $this->rowCount = $rows;
         return $rows;
     }
     
