@@ -13,8 +13,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
 
     public function testCanBeLoaded()
     {
-        $parserA = new CSVParser();
-	$this->assertTrue($parserA->load('test.csv'));
+        $parserA = new CSVParser('test.csv');
     }
 
     public function testCanGetRow()
