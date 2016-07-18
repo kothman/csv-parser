@@ -29,6 +29,6 @@
 	}
     },
     "scripts": {
-	"test": "vendor/bin/phpunit --bootstrap src/CSVParser.php tests"
+	"test": "phpunit"
     }
 }
