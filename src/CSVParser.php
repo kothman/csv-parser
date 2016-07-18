@@ -5,11 +5,11 @@ namespace Kothman;
 class CSVParser
 {
 
-    private $resource = null;
-    private $length = 0;
-    private $delimiter = ',';
-    private $enclosure = '"';
-    private $escape = '\\';
+    protected $resource = null;
+    protected $length = 0;
+    protected $delimiter = ',';
+    protected $enclosure = '"';
+    protected $escape = '\\';
 
     /**
      * Create a new CSVParser instance
@@ -38,7 +38,7 @@ class CSVParser
      *
      * @return void
      */
-     private function check() {
+     protected function check() {
          if(!$this->resource) {
 	     throw new Exception('The CSVParser does not have a loaded resource.');
 	 }
