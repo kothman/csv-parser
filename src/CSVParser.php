@@ -53,21 +53,6 @@ class CSVParser
      }
 
     /**
-     * Set various options that get passed to fgetcsv in CSVParser::row
-     *
-     * See http://php.net/manual/en/function.fgetcsv.php for more info
-     *
-     * @param array $options length, delimiter, enclosure, escape.
-     * @return void
-     */
-     public function set($options) {
-	 $this->length = $options['length'] || $this->length;
-	 $this->delimiter = $options['delimiter'] || $this->delimiter;
-	 $this->enclosure = $options['enclosure'] || $this->enclosure;
-	 $this->escape = $options['escape'] || $this->escape;
-     }
-
-    /**
      * Return the next row of the CSV file
      *
      * @return array | false
