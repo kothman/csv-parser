@@ -25,7 +25,7 @@ class CSVParser
      * Load a resource to be used by the parser
      *
      * @param string $path A URL or file.
-     * @return bool
+     * @return bool Indicate success or failiure
      */ 
      public function load($path)
      {
@@ -33,7 +33,11 @@ class CSVParser
 	return $this->resource?true:false;
      }
 
-
+    /**
+     * Called at the begining of any function that uses $resource
+     *
+     * @return void
+     */
      private function check() {
          if(!$this->resource) {
 	     throw new Exception('The CSVParser does not have a loaded resource.');
@@ -42,6 +46,8 @@ class CSVParser
 
     /**
      * Set various options that get passed to fgetcsv in CSVParser::row
+     *
+     * See http://php.net/manual/en/function.fgetcsv.php for more info
      *
      * @param array $options length, delimiter, enclosure, escape.
      * @return void
@@ -68,12 +74,21 @@ class CSVParser
 	 return $data;
      }
 
+    /**
+     * Resets the file position pointer back to the beginning of the file
+     *
+     * @return void
+     */
      public function rewind() {
          $this->check();
          fseek($this->resource, 0);
      }
 
-
+    /**
+     * Returns the number of rows in the CSV resource by iterating through each row
+     *
+     * @return int Number of rows
+     */
      public function countRows() {
      	 $this->check();
 
@@ -92,6 +107,11 @@ class CSVParser
 	 return $rows;
      }
 
+    /**
+     * Count the number of columns based on the header row
+     *
+     * @return int Number of columns
+     */
      public function countColumns() {
          $this->check();
 	 $pos = ftell($this->resource);
@@ -103,6 +123,11 @@ class CSVParser
 	 return count($row);
      }
 
+    /**
+     * Convert the CSV resource to an associative array with the header row as keys
+     *
+     * @return array Associative array
+     */
      public function toDictionary()
      {
          $this->check();
