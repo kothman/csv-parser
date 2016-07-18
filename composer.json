@@ -1,6 +1,6 @@
 {
     "name": "kothman/csv-parser",
-    "description": "A CSV parser and constructor for PHP.",
+    "description": "A CSV parser for PHP",
     "homepage": "https://github.com/kothman/php-csv",
     "license": "MIT",
     "authors": [
