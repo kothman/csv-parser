@@ -1,6 +1,6 @@
 <?php
 
-namespace Kothman\CSV;
+namespace Kothman;
 
 class ParserTest extends \PHPUnit_Framework_TestCase
 {

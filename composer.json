@@ -19,15 +19,15 @@
     },
     "autoload": {
 	"psr-4": {
-	    "kothman\\": "src"
+	    "Kothman\\": "src"
 	}
     },
     "autoload-dev": {
 	"psr-4": {
-	    "kothman\\": "tests"
+	    "Kothman\\": "tests"
 	}
     },
     "scripts": {
-	"test": "vendor/phpunit/phpunit/phpunit --bootstrap src/CSVParser.php tests"
+	"test": "vendor/bin/phpunit --bootstrap src/CSVParser.php tests"
     }
 }
